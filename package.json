@@ -1,0 +1,22 @@
+{
+  "name": "studio-free",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/InvisiBug/studio-free.git",
+  "author": "InvisiBug <matthewjkavanagh@gmail.com>",
+  "scripts": {
+    "dev": "nodemon --exec \"ts-node \" ./src/index.ts",
+    "build": "tsc && cp ./src/devices.yaml ./dist"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "@types/axios": "^0.14.0",
+    "@types/node": "^20.8.10",
+    "axios": "^1.6.0",
+    "node": "^21.1.0",
+    "nodemon": "^3.0.1",
+    "prettier": "^3.0.3",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.2.2"
+  }
+}
