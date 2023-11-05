@@ -13,23 +13,13 @@ axios.get("https://businessgateway.puregym.com/api/bookings/v1/timetable/75/sche
 
   data.activities.forEach((element: any, index: number) => {
     if (element.studio === "Studio") {
-      // const now2 = new Date();
-      const now2 = new Date(new Date().getTime() + 24 * 60 * 60 * 1000);
-      const date2 = new Date(Date.parse(element.startDateTime.dateTime));
+      // const now = new Date();
+      const now = new Date(new Date().getTime() + 24 * 60 * 60 * 1000);
+      const date = new Date(Date.parse(element.startDateTime.dateTime));
 
-      if (now2.setHours(0, 0, 0, 0) == date2.setHours(0, 0, 0, 0)) {
-        //* This event is today
-        // Date equals today's date
-        console.log("today");
-        console.log(now2.setHours(0, 0, 0, 0), date2.setHours(0, 0, 0, 0));
-
-        const now = new Date().getTime();
-        const timeInUse = Date.parse(element.startDateTime.dateTime);
-
-        let Difference_In_Days = (timeInUse - now) / (1000 * 3600 * 24);
-
-        // if (Difference_In_Days <= 1) {
-        const startHours = new Date(element.startDateTime.dateTime).getHours();
+      // Get olnly the events for the day
+      if (now.setHours(0, 0, 0, 0) == date.setHours(0, 0, 0, 0)) {
+        const startHours = String(new Date(element.startDateTime.dateTime).getHours()).padStart(2, "0");
         const startMinutes = String(new Date(element.startDateTime.dateTime).getMinutes()).padStart(2, "0");
 
         const endHours = new Date(Date.parse(element.startDateTime.dateTime) + element.duration * 60000).getHours();
