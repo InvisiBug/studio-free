@@ -1,5 +1,5 @@
 export interface Gym {
-  activities?: ActivitiesEntity[] | null;
+  activities: ActivitiesEntity[];
 }
 
 export interface ActivitiesEntity {

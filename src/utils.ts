@@ -67,7 +67,9 @@ export function displayTimeline(studioInUseToday: { start: string; end: string }
     .join("\n");
 
   // Display the timeline
-  console.log(timelineStr);
+  // console.log(timeline);
+  return timeline;
+  // console.log(timelineStr);
 }
 
 export function timeBetweenDates(date1: Date, date2: Date): string {
