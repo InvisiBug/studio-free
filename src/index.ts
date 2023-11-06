@@ -47,6 +47,9 @@ axios.get("https://businessgateway.puregym.com/api/bookings/v1/timetable/75/sche
   freeTimesToday.forEach((element) => {
     console.log(`${element.start} - ${element.end}`);
   });
+
+  // Usage
+  displayTimeline(studioInUseToday);
 });
 
 function getFreeTimes(inUseTimes: { start: string; end: string }[]): { start: string; end: string }[] {
@@ -68,6 +71,34 @@ function getFreeTimes(inUseTimes: { start: string; end: string }[]): { start: st
   }
 
   return freeTimes;
+}
+
+function displayTimeline(studioInUseToday: { start: string; end: string }[]) {
+  // Initialize the timeline
+  let timeline = new Array((24 * 60) / 15).fill(" ");
+
+  // Mark the times in the timeline
+  for (let timeSlot of studioInUseToday) {
+    let start = (parseInt(timeSlot.start.split(":")[0]) * 60 + parseInt(timeSlot.start.split(":")[1])) / 15;
+    let end = (parseInt(timeSlot.end.split(":")[0]) * 60 + parseInt(timeSlot.end.split(":")[1])) / 15;
+
+    for (let i = start; i < end; i++) {
+      timeline[i] = "X";
+    }
+  }
+
+  // Convert the timeline to a string
+  let timelineStr = timeline
+    .map((mark, quarter) => {
+      let hour = Math.floor(quarter / 4);
+      let minute = (quarter % 4) * 15;
+      let timeStr = String(hour).padStart(2, "0") + ":" + String(minute).padStart(2, "0");
+      return `${timeStr}: ${mark}`;
+    })
+    .join("\n");
+
+  // Display the timeline
+  console.log(timelineStr);
 }
 
 function timeBetweenDates(date1: Date, date2: Date): string {
