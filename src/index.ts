@@ -5,8 +5,6 @@ import { Gym, ActivitiesEntity } from "./types";
 axios.get("https://businessgateway.puregym.com/api/bookings/v1/timetable/75/scheduled-class").then((resp) => {
   const { data }: { data: Gym } = resp;
 
-  const numDays = 3;
-
   let busySchedule: Schedule[][] = [];
   let freeSchedule: Schedule[][] = [];
 
@@ -15,11 +13,6 @@ axios.get("https://businessgateway.puregym.com/api/bookings/v1/timetable/75/sche
     end: string;
     duration?: number;
   }
-
-  const array = [
-    { time: "00:00", today: " ", tomorrow: "x" },
-    { time: "00:15", today: "X", tomorrow: "" },
-  ];
 
   // const string = "Times \t Today \t Tomorrow\n";
   // console.log(string);
